@@ -63,7 +63,6 @@ class _EmailForgotPasswordState extends State<EmailForgotPassword> {
               Textformfieldwidget(
                 textEditingController: phone,
                 hinttext: 'Enter your email id',
-                obscureText: false,
               ),
               46.vspace,
               Center(
@@ -72,7 +71,9 @@ class _EmailForgotPasswordState extends State<EmailForgotPassword> {
                 width: MediaQuery.of(context).size.width / 1,
                 height: 55,
                 color: theme.splashColor,
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed(Appnames.checkEmail);
+                },
               )),
               32.vspace,
               Center(

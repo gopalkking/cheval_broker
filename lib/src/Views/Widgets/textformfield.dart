@@ -6,13 +6,13 @@ class Textformfieldwidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
   final String? hinttext;
-  final bool obscureText;
+  final bool? obscureText;
   const Textformfieldwidget({
     super.key,
     required this.textEditingController,
     this.autovalidateMode,
     this.validator,
-    this.hinttext, this.suffixIcon,required this.obscureText,
+    this.hinttext, this.suffixIcon,this.obscureText,
   });
 
   @override
@@ -20,7 +20,7 @@ class Textformfieldwidget extends StatelessWidget {
     ThemeData theme = Theme.of(context);
     return TextFormField(
       controller: textEditingController,
-      obscureText: obscureText ,
+      obscureText: obscureText??false ,
       style: Theme.of(context).textTheme.titleSmall,
       autovalidateMode: autovalidateMode,
       decoration: InputDecoration(

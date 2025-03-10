@@ -1,6 +1,5 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
 import 'package:cheval_broker/src/Views/Utilies/colors.dart';
-import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:cheval_broker/src/Views/Widgets/textformfield.dart';
@@ -28,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            46.vspace,
+            24.vspace,
             Center(
                 child: Text(
               'Login',
@@ -50,7 +49,6 @@ class _LoginScreenState extends State<LoginScreen> {
             Textformfieldwidget(
               textEditingController: phone,
               hinttext: 'Enter your email id',
-              obscureText: false,
             ),
             16.vspace,
             Text(
@@ -93,40 +91,11 @@ class _LoginScreenState extends State<LoginScreen> {
               width: MediaQuery.of(context).size.width / 1,
               height: 55,
               color: theme.splashColor,
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Appnames.navigator);
+              },
             )),
-            32.vspace,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                lineContainer(),
-                Text('       Or Sign up with      ',
-                    style: Theme.of(context).textTheme.bodyLarge),
-                lineContainer()
-              ],
-            ),
-            32.vspace,
-            Center(
-              child: InkWell(
-                onTap: () {},
-                child: Container(
-                  width: MediaQuery.sizeOf(context).width / 1.2,
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: const Color(0xFF1D1D1D)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Image.asset(Appimage.google),
-                      Text('Continue with Google',
-                          style: Theme.of(context).textTheme.titleSmall)
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            24.vspace,
+            16.vspace,
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -136,7 +105,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         .titleSmall!
                         .copyWith(fontSize: 16)),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Appnames.signup);
+                  },
                   child: Text('Signup',
                       style: Theme.of(context)
                           .textTheme
@@ -148,14 +119,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         ),
       ),
-    );
-  }
-
-  Widget lineContainer() {
-    return Container(
-      height: 1,
-      width: 56,
-      color: Appcolors.appColors.shade200,
     );
   }
 }

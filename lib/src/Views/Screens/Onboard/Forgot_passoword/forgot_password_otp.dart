@@ -1,24 +1,35 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
-import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
-import 'package:cheval_broker/src/Views/Widgets/phone_field_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pinput/pinput.dart';
 
-class PhoneForgotPassword extends StatefulWidget {
-  const PhoneForgotPassword({super.key});
+class ForgotPasswordOtp extends StatefulWidget {
+  const ForgotPasswordOtp({super.key});
 
   @override
-  State<PhoneForgotPassword> createState() => _PhoneForgotPasswordState();
+  State<ForgotPasswordOtp> createState() => _ForgotPasswordOtpState();
 }
 
-class _PhoneForgotPasswordState extends State<PhoneForgotPassword> {
-  TextEditingController phone = TextEditingController();
+class _ForgotPasswordOtpState extends State<ForgotPasswordOtp> {
+   final pinputController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+         final defaultPinTheme = PinTheme(
+      width: 66,
+      height: 66,
+      textStyle: const TextStyle(
+        fontSize: 24,
+        color: Colors.white,
+      ),
+      decoration: BoxDecoration(
+        color:  const Color(0xFF1D1D1D),
+        borderRadius: BorderRadius.circular(8)
+      ),
+    );
     ThemeData theme = Theme.of(context);
     return Scaffold(
       body: SingleChildScrollView(
@@ -38,39 +49,30 @@ class _PhoneForgotPasswordState extends State<PhoneForgotPassword> {
               Center(child: Image.asset(Appimage.forgotPassword)),
               Center(
                   child: Text(
-                'Forgot Password?',
+                'Enter your OTP',
                 style: Theme.of(context).textTheme.displayMedium,
               )),
-              8.vspace,
-              Text(
-                'Enter your Phone number so that we can send you OTP to reset Password',
-                style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                      color: Appcolors.appColors.shade100,
-                    ),
-                textAlign: TextAlign.center,
-              ),
-              8.vspace,
-              Center(
-                  child: Text(
-                'Password Reset with Phone number',
-                style: Theme.of(context).textTheme.headlineSmall,
-                textAlign: TextAlign.center,
-              )),
               46.vspace,
-              Text(
-                'Phone Number',
-                style: Theme.of(context).textTheme.bodyLarge,
-              ),
-                PhoneNumberField(textEditingController: phone, hintText: '9894980850'),
+              Pinput(
+                      controller: pinputController,
+                      length: 6,
+                      keyboardType: TextInputType.phone,
+                      defaultPinTheme: defaultPinTheme,
+                      errorPinTheme: defaultPinTheme.copyBorderWith(
+                        border: Border.all(color: Colors.redAccent),
+                      ),
+                      onSubmitted: (value) {
+                      },
+                    ),
               46.vspace,
               Center(
                   child: ButtonWidget(
-                text: 'Send OTP',
+                text: 'Submit',
                 width: MediaQuery.of(context).size.width / 1,
                 height: 55,
                 color: theme.splashColor,
                 onPressed: () {
-                                          Get.toNamed(Appnames.forgotPasswordOTP);
+                   Get.toNamed(Appnames.resetPassword);
                 },
               )),
               32.vspace,

@@ -4,10 +4,11 @@ class Appnames{
   static const String login = '/login';
   static const String emailForgotPassword ='/emailForgotPassword';
   static const String phoneForgotPassword ='/phoneForgotPassword';
-  static const String loginOTP = '/loginOTP';
+  static const String forgotPasswordOTP = '/forgotPasswordOTP';
+  static const String checkEmail = '/checkEmail';
+  static const String resetPassword = '/resetPassword';
+  static const String passwordChanged = '/passwordChanged';
   static const String signup = '/signup';
-  static const String signupOTP = '/signupOTP';
-  static const String emailOTP = '/emailOTP';
   static const String navigator = '/navigator';
   static const String home = '/home';
   static const String profile = '/profile';
