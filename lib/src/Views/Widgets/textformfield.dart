@@ -5,14 +5,17 @@ class Textformfieldwidget extends StatelessWidget {
   final AutovalidateMode? autovalidateMode;
   final String? Function(String?)? validator;
   final Widget? suffixIcon;
+  final Widget? prefixIcon;
   final String? hinttext;
   final bool? obscureText;
+  final double? borderradius;
+  final Color? hintcolor;
   const Textformfieldwidget({
     super.key,
     required this.textEditingController,
     this.autovalidateMode,
     this.validator,
-    this.hinttext, this.suffixIcon,this.obscureText,
+    this.hinttext, this.suffixIcon,this.obscureText, this.borderradius, this.hintcolor, this.prefixIcon,
   });
 
   @override
@@ -29,16 +32,17 @@ class Textformfieldwidget extends StatelessWidget {
         hintStyle: Theme.of(context)
             .textTheme
             .bodyLarge!
-            .copyWith(color: theme.scaffoldBackgroundColor),
+            .copyWith(color: hintcolor??theme.scaffoldBackgroundColor),
         filled: true,
         fillColor: const Color(0xFF1D1D1D),
+        prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(borderradius??12.0),
           borderSide: const BorderSide(color: Colors.red, width: 2.0),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12.0),
+          borderRadius: BorderRadius.circular(borderradius??12.0),
           borderSide: BorderSide.none,
         ),
       ),
