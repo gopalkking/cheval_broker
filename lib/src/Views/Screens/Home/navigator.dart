@@ -19,7 +19,8 @@ class NavigatorScreen extends StatefulWidget {
 class _NavigatorScreenState extends State<NavigatorScreen> {
   Widget containershadow(Color color,Widget widget) {
     return Container(
-      padding: const EdgeInsets.all(8),
+      width: 95,
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         color: color,
@@ -53,8 +54,7 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
             Container(
               color: theme.splashColor,
               child: Padding(
-                padding: const EdgeInsets.only(
-                    left: 24, right: 24, top: 12, bottom: 12),
+                padding: const EdgeInsets.all(12),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
