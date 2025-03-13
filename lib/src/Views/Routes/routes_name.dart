@@ -12,4 +12,7 @@ class Appnames{
   static const String navigator = '/navigator';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String dailyAvailability = '/dailyAvailability';
+  static const String newEnquiries = '/newEnquiries';
+  static const String recentBookings = '/recentBookings';
  }

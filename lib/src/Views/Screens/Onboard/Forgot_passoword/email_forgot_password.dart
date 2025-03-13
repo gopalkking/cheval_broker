@@ -33,6 +33,7 @@ class _EmailForgotPasswordState extends State<EmailForgotPassword> {
                 onPressed: () {
                   Get.back();
                 },
+                backgroundColor: Appcolors.appColors.shade100,
               ),
               8.vspace,
               Center(child: Image.asset(Appimage.forgotPassword)),

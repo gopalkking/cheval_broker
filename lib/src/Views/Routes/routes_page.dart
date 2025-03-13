@@ -1,5 +1,8 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
+import 'package:cheval_broker/src/Views/Screens/Home/daily_availability.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/navigator.dart';
+import 'package:cheval_broker/src/Views/Screens/Home/new_enquiries.dart';
+import 'package:cheval_broker/src/Views/Screens/Home/recent_bookings.dart';
 import 'package:cheval_broker/src/Views/Screens/Onboard/Forgot_passoword/check_email.dart';
 import 'package:cheval_broker/src/Views/Screens/Onboard/Forgot_passoword/email_forgot_password.dart';
 import 'package:cheval_broker/src/Views/Screens/Onboard/Forgot_passoword/forgot_password_otp.dart';
@@ -61,6 +64,21 @@ class AppRoutes {
             GetPage(
             name: Appnames.navigator,
             page: () =>  NavigatorScreen(index: 0),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.dailyAvailability,
+            page: () =>  const DailyAvailability(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.newEnquiries,
+            page: () =>  const NewEnquiries(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.recentBookings,
+            page: () =>  const RecentBookings(),
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
       ];

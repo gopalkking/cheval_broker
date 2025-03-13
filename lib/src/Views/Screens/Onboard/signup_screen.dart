@@ -39,6 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 onPressed: () {
                   Get.back();
                 },
+                backgroundColor: Appcolors.appColors.shade100,
               ),
               8.vspace,
               Center(

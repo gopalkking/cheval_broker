@@ -38,6 +38,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 onPressed: () {
                   Get.back();
                 },
+                backgroundColor: Appcolors.appColors.shade100,
               ),
               8.vspace,
               Center(child: Image.asset(Appimage.resetPassword)),

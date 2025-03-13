@@ -33,6 +33,7 @@ class _PhoneForgotPasswordState extends State<PhoneForgotPassword> {
                 onPressed: () {
                   Get.back();
                 },
+                backgroundColor: Appcolors.appColors.shade100,
               ),
               8.vspace,
               Center(child: Image.asset(Appimage.forgotPassword)),
