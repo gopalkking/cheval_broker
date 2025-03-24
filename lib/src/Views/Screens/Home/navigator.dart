@@ -1,7 +1,7 @@
 import 'package:cheval_broker/src/Views/Screens/Home/home_screen.dart';
-import 'package:cheval_broker/src/Views/Screens/booking_screen.dart';
-import 'package:cheval_broker/src/Views/Screens/driver_list.dart';
-import 'package:cheval_broker/src/Views/Screens/vechicle_list.dart';
+import 'package:cheval_broker/src/Views/Screens/Booking/booking_screen.dart';
+import 'package:cheval_broker/src/Views/Screens/Driver%20List/driver_list.dart';
+import 'package:cheval_broker/src/Views/Screens/Vechicle%20List/vechicle_list.dart';
 import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';

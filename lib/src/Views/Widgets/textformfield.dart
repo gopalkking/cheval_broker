@@ -10,12 +10,13 @@ class Textformfieldwidget extends StatelessWidget {
   final bool? obscureText;
   final double? borderradius;
   final Color? hintcolor;
+  final BorderSide? border;
   const Textformfieldwidget({
     super.key,
     required this.textEditingController,
     this.autovalidateMode,
     this.validator,
-    this.hinttext, this.suffixIcon,this.obscureText, this.borderradius, this.hintcolor, this.prefixIcon,
+    this.hinttext, this.suffixIcon,this.obscureText, this.borderradius, this.hintcolor, this.prefixIcon, this.border,
   });
 
   @override
@@ -43,7 +44,7 @@ class Textformfieldwidget extends StatelessWidget {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(borderradius??12.0),
-          borderSide: BorderSide.none,
+          borderSide: border??BorderSide.none,
         ),
       ),
     );

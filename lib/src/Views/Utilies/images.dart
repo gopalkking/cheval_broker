@@ -15,4 +15,6 @@ class Appimage {
   static const String newEnquiries = 'assets/images/new_enquiries.png';
   static const String activeEnquiries = 'assets/images/active_enquiries.png';
   static const String totalVechicle = 'assets/images/total_vechicle.png';
+  static const String delete = 'assets/images/delete.png';
+  static const String alert = 'assets/images/Alert.png';
 }

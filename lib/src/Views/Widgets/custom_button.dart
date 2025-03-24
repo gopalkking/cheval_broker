@@ -10,7 +10,8 @@ class ButtonWidget extends StatelessWidget {
   final Color? iconcolor;
   final bool? iconbutton;
   final IconData? icon;
-  const ButtonWidget({super.key, required this.text, required this.width, required this.height, this.onPressed, required this.color, this.textcolor, this.iconbutton, this.icon, this.iconcolor});
+  final double? textsize;
+  const ButtonWidget({super.key, required this.text, required this.width, required this.height, this.onPressed, required this.color, this.textcolor, this.iconbutton, this.icon, this.iconcolor, this.textsize});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ButtonWidget extends StatelessWidget {
            Icon(icon,color: iconcolor,),
             Text(text,style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: textcolor)),
           ],
-        ):Text(text,style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: textcolor))),
+        ):Text(text,style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: textcolor,fontSize: textsize))),
     );
   }
 }

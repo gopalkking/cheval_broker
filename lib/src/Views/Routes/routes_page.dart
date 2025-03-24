@@ -1,4 +1,8 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
+import 'package:cheval_broker/src/Views/Screens/Booking/booking_enquires_view.dart';
+import 'package:cheval_broker/src/Views/Screens/Booking/booking_full_view.dart';
+import 'package:cheval_broker/src/Views/Screens/Booking/booking_view.dart';
+import 'package:cheval_broker/src/Views/Screens/Driver%20List/driver_list_full_view.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/daily_availability.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/navigator.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/new_enquiries.dart';
@@ -12,6 +16,7 @@ import 'package:cheval_broker/src/Views/Screens/Onboard/Forgot_passoword/reset_p
 import 'package:cheval_broker/src/Views/Screens/Onboard/login_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Onboard/signup_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Onboard/splash_screen.dart';
+import 'package:cheval_broker/src/Views/Screens/Vechicle%20List/vechicle_list_full_view.dart';
 import 'package:get/get.dart';
 
 class AppRoutes {
@@ -79,6 +84,31 @@ class AppRoutes {
             GetPage(
             name: Appnames.recentBookings,
             page: () =>  const RecentBookings(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.bookingEnquiresView,
+            page: () =>  const BookingEnquiresView(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.bookingView,
+            page: () =>  const BookingView(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.bookingFullView,
+            page: () =>  const BookingFullView(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.vechicleListFullView,
+            page: () =>  const VechicleListFullView(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.driverListFullView,
+            page: () =>  const DriverListFullView(),
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
       ];

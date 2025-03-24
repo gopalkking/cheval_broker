@@ -1,7 +1,7 @@
 import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/home_container_second_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/home_widgets/home_container_second_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

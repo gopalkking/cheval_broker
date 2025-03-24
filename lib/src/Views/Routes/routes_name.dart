@@ -15,4 +15,9 @@ class Appnames{
   static const String dailyAvailability = '/dailyAvailability';
   static const String newEnquiries = '/newEnquiries';
   static const String recentBookings = '/recentBookings';
+  static const String bookingEnquiresView = '/bookingEnquiresView';
+  static const String bookingView = '/bookingView';
+  static const String bookingFullView = '/bookingFullView';
+  static const String vechicleListFullView = '/vechicleListFullView';
+  static const String driverListFullView= '/driverListFullView';
  }

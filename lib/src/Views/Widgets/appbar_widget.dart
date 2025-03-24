@@ -1,4 +1,3 @@
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppbarWidget extends StatelessWidget  implements PreferredSizeWidget {
