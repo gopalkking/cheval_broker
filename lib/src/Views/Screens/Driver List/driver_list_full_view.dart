@@ -1,7 +1,7 @@
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_details_container.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_icon_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,26 +14,38 @@ class DriverListFullView extends StatefulWidget {
 }
 
 class _DriverListFullViewState extends State<DriverListFullView> {
+   TextEditingController searchController = TextEditingController();
+  bool _isSearching = false;
+  String searchTerm = '';
+  
+   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchTerm = searchController.text;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Scaffold(
         appBar: AppbarWidget(
-          title: Text(
-            "Driver Name",
-            style: theme.textTheme.headlineSmall,
-          ),
-          leadindButton: BackArrowWidget(
-            backgroundColor: Colors.black,
-            iconcolor: Colors.white,
-            onPressed: () {
-              Get.back();
-            },
-            padingValue: 10,
-          ),
-          actions: const [
-            CustomIconButton(icon: Icons.search),
-          ],
+             titleWidgetbool: true,
+        titlewidget:_isSearching
+            ?CustomSearchTextfield(textEditingController: searchController): Text("Driver Name",  style: theme.textTheme.headlineSmall) , actions: [
+           CustomIconButton(icon:_isSearching ? Icons.close : Icons.search,onPressed: (){
+             setState(() {
+                _isSearching = !_isSearching;
+                if (!_isSearching) {
+                  searchController.clear();
+                }
+              });
+           },),
+        ],
+         titletext: "Driver Name",
+          leadingOnPressed: (){   Get.back();},
         ),
         body: SingleChildScrollView(
           padding:  const EdgeInsets.all(14.0),

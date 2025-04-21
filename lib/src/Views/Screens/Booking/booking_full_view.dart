@@ -1,9 +1,11 @@
+import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
+import 'package:cheval_broker/src/Views/Screens/Booking/pdf_service.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_details_container.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_dropdown.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_outline_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,26 +22,39 @@ class _BookingFullViewState extends State<BookingFullView> {
   final lr = ['View', 'Download'];
   String? selectedLR;
   String? selectedChallan;
+  TextEditingController searchController = TextEditingController();
+  bool _isSearching = false;
+  String searchTerm = '';
+
+  final PdfService pdfService = PdfService();
+  
+   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchTerm = searchController.text;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Scaffold(
         appBar: AppbarWidget(
-          title: Text(
-            "#24637",
-            style: theme.textTheme.headlineSmall,
-          ),
-          leadindButton: BackArrowWidget(
-            backgroundColor: Colors.black,
-            iconcolor: Colors.white,
-            onPressed: () {
-              Get.back();
-            },
-            padingValue: 10,
-          ),
-          actions: const [
-            CustomIconButton(icon: Icons.search),
-          ],
+             titleWidgetbool: true,
+        titlewidget:_isSearching
+            ?CustomSearchTextfield(textEditingController: searchController): Text("#24637",  style: theme.textTheme.headlineSmall) , actions: [
+           CustomIconButton(icon:_isSearching ? Icons.close : Icons.search,onPressed: (){
+             setState(() {
+                _isSearching = !_isSearching;
+                if (!_isSearching) {
+                  searchController.clear();
+                }
+              });
+           },),
+        ],
+          leadingOnPressed: (){   Get.back();},
         ),
         body: SingleChildScrollView(
           padding:  const EdgeInsets.all(14.0),
@@ -74,8 +89,14 @@ class _BookingFullViewState extends State<BookingFullView> {
                                 labeltext: 'LR',
                                 value: selectedLR,
                                 onChanged: (newValue) {
-                                  setState(() {
+                                  setState(() async {
                                     selectedLR = newValue;
+                                    if (selectedLR == 'View') {
+                                      Get.toNamed(Appnames.consignmentScreen);
+                                    } else if (selectedLR =='Download') {
+                                           final data = await pdfService.generateConsignmentNotePDF();
+                                          pdfService.savepdfFile("cheval", data);
+                                    }
                                   });
                                 },
                                 items: lr)),
@@ -85,7 +106,11 @@ class _BookingFullViewState extends State<BookingFullView> {
                           height: 55,
                           color: theme.splashColor,
                           textcolor: theme.splashColor,
-                          onPressed: () {},
+                          onPressed: () {
+                          
+                                      // final data = await pdfService.generateConsignmentNotePDF();
+                                      // pdfService.savepdfFile("cheval", data);
+                          },
                         )
                       ],
                     ),

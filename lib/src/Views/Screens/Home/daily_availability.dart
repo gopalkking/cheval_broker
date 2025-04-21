@@ -2,8 +2,10 @@ import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/home_widgets/add_edit_custom_dialog.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
@@ -24,6 +26,9 @@ class _DailyAvailabilityState extends State<DailyAvailability> {
   TextEditingController currentPincode = TextEditingController();
   TextEditingController preferredDistrict = TextEditingController();
   TextEditingController preferredState = TextEditingController();
+  TextEditingController searchController = TextEditingController();
+  bool _isSearching = false;
+  String searchTerm = '';
 
   void showCustomDialog(BuildContext context, String title) {
     showDialog(
@@ -43,29 +48,38 @@ class _DailyAvailabilityState extends State<DailyAvailability> {
     );
   }
 
+   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchTerm = searchController.text;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppbarWidget(
-        title: Text(
-          "Daily Availability",
-          style: theme.textTheme.headlineSmall,
-        ),
+        titleWidgetbool: true,
+       titlewidget: _isSearching
+            ?CustomSearchTextfield(textEditingController: searchController): Text("Daily Availability",  style: theme.textTheme.headlineSmall),
         actions: [
           CustomIconButton(
-            icon: Icons.search,
-            onPressed: () {},
+            icon: _isSearching ? Icons.close : Icons.search,
+            onPressed: () {
+               setState(() {
+                _isSearching = !_isSearching;
+                if (!_isSearching) {
+                  searchController.clear();
+                }
+              });
+            },
           ),
         ],
-        leadindButton: BackArrowWidget(
-          backgroundColor: Colors.black,
-          iconcolor: Colors.white,
-          onPressed: () {
-            Get.back();
-          },
-          padingValue: 10,
-        ),
+       leadingOnPressed: (){   Get.back();},
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),
@@ -84,6 +98,7 @@ class _DailyAvailabilityState extends State<DailyAvailability> {
                       ButtonWidget(
                         text: '+ Add',
                         textcolor: Colors.black,
+                        textsize: 20,
                         width: MediaQuery.of(context).size.width / 2.5,
                         height: 55,
                         color: theme.splashColor,
@@ -122,61 +137,25 @@ class _DailyAvailabilityState extends State<DailyAvailability> {
                                             .copyWith(fontSize: 22),
                                       ),
                                       8.vspace,
-                                      Text(
-                                        "Vechicle Type",
-                                        style: theme.textTheme.bodyLarge,
-                                      ),
+                                      const CommonQuestionText(text: "Vechicle Type"),
                                       8.vspace,
-                                      Text(
-                                        "Location Pincode",
-                                        style: theme.textTheme.bodyLarge,
-                                      ),
+                                      const CommonQuestionText(text: "Location Pincode"),
                                       8.vspace,
-                                      Text(
-                                        "Preferred State",
-                                        style: theme.textTheme.bodyLarge,
-                                      ),
+                                      const CommonQuestionText(text: "Preferred State"),
                                       8.vspace,
-                                      Text(
-                                        "Preferred District",
-                                        style: theme.textTheme.bodyLarge,
-                                      ),
+                                      const CommonQuestionText(text: "Preferred District"),
                                     ],
                                   ),
                                   Column(
                                     children: [
                                       36.vspace,
-                                      Text(
-                                        "Truck",
-                                        style: theme.textTheme.labelMedium!
-                                            .copyWith(
-                                                color: Colors.white,
-                                                fontSize: 16),
-                                      ),
+                                      const CommonAnswerText(text: "Truck"),
                                       8.vspace,
-                                      Text(
-                                        "632008",
-                                        style: theme.textTheme.labelMedium!
-                                            .copyWith(
-                                                color: Colors.white,
-                                                fontSize: 16),
-                                      ),
+                                      const CommonAnswerText(text: "632008"),
                                       8.vspace,
-                                      Text(
-                                        "Tamilnadu",
-                                        style: theme.textTheme.labelMedium!
-                                            .copyWith(
-                                                color: Colors.white,
-                                                fontSize: 16),
-                                      ),
+                                      const CommonAnswerText(text: "Tamilnadu"),
                                       8.vspace,
-                                      Text(
-                                        "Madurai \nCoimbatore",
-                                        style: theme.textTheme.labelMedium!
-                                            .copyWith(
-                                                color: Colors.white,
-                                                fontSize: 16),
-                                      ),
+                                      const CommonAnswerText(text: "Madurai \nCoimbatore"),
                                     ],
                                   )
                                 ],

@@ -19,5 +19,17 @@ class Appnames{
   static const String bookingView = '/bookingView';
   static const String bookingFullView = '/bookingFullView';
   static const String vechicleListFullView = '/vechicleListFullView';
-  static const String driverListFullView= '/driverListFullView';
+  static const String driverListFullView = '/driverListFullView';
+  static const String reportAnalyticsTabs = '/reportAnalyticsTabs';
+  static const String reportFullView = '/reportFullView';
+  static const String helpSupport = '/helpSupport';
+  static const String settings = '/settings';
+  static const String rolesScreen = '/rolesScreen';
+  static const String addUser = '/addUser';
+  static const String notification = '/notification';
+  static const String subscribeNow = '/subscribeNow';
+  static const String currentSubscribe = '/currentSubscribe';
+  static const String invoicePayments = '/invoicePayments';
+  static const String invoiceScreen = '/invoiceScreen';
+  static const String consignmentScreen = '/consignmentScreen';
  }

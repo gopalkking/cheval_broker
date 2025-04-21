@@ -4,13 +4,14 @@ import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/Booking_widgets/bidnow_dialog.dart';
 import 'package:cheval_broker/src/Views/Widgets/Booking_widgets/booking_answer_text_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/Booking_widgets/booking_question_text_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
-import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/row_title_button_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
+import 'package:cheval_broker/src/Views/Widgets/textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,6 +24,7 @@ class BookingScreen extends StatefulWidget {
 
 class _BookingScreenState extends State<BookingScreen> {
   TextEditingController bidNow = TextEditingController();
+  TextEditingController search = TextEditingController();
 
   void showBidNowDialog(BuildContext context,) {
     showDialog(
@@ -40,23 +42,37 @@ class _BookingScreenState extends State<BookingScreen> {
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Scaffold(
-      appBar: AppbarWidget(
-        title: Text(
-          "Booking",
-          style: theme.textTheme.headlineSmall,
-        ),
-        leadindButton: CustomIconButton(
-          icon: Icons.menu_sharp,
-          onPressed: () {},
-        ),
-        actions: const [
-          CustomIconButton(icon: Icons.search),
-        ],
-      ),
+      // appBar: AppbarWidget(
+      //   title: Text(
+      //     "Booking",
+      //     style: theme.textTheme.headlineSmall,
+      //   ),
+      //   leadindButton: CustomIconButton(
+      //     icon: Icons.menu_sharp,
+      //     onPressed: () {},
+      //   ),
+      //   actions: const [
+      //     CustomIconButton(icon: Icons.search),
+      //   ],
+      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),
         child: Column(
           children: [
+             SizedBox(
+                width: MediaQuery.of(context).size.width / 1,
+                child: Center(
+                    child: Textformfieldwidget(
+                  textEditingController: search,
+                  borderradius: 24,
+                  hinttext: "Search",
+                  hintcolor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ))),
+            16.vspace,
             RowTitleButtonWidget(
               title: "Booking Enquires",
               buttontext: "View all",
@@ -106,29 +122,29 @@ class _BookingScreenState extends State<BookingScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const BookingQuestionTextWidget(text: "Goods Types"),
+                                  const CommonQuestionText(text: "Goods Types"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Weight"),
+                                   const CommonQuestionText(text: "Weight"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Vechicle Type"),
+                                   const CommonQuestionText(text: "Vechicle Type"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "From"),
+                                   const CommonQuestionText(text: "From"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "To"),
+                                   const CommonQuestionText(text: "To"),
                                 ],
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  const BookingAnswerTextWidget(text: "Electronics & Appliances"),
+                                  const CommonAnswerText(text: "Electronics & Appliances"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "76kg"),
+                                    const CommonAnswerText(text: "76kg"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "Truck"),
+                                    const CommonAnswerText(text: "Truck"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "Name"),
+                                    const CommonAnswerText(text: "Name"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "Name"),
+                                    const CommonAnswerText(text: "Name"),
                                 ],
                               ),
                             ],
@@ -211,41 +227,40 @@ class _BookingScreenState extends State<BookingScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Driver"),
+                                  const CommonQuestionText(text: "Driver"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Shiping Date"),
+                                          const CommonQuestionText(text: "Shiping Date"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Status"),
+                                          const CommonQuestionText(text: "Status"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Weight"),
+                                          const CommonQuestionText(text: "Weight"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "Vechicle Type"),
+                                          const CommonQuestionText(text: "Vechicle Type"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget( text: "From"),
+                                          const CommonQuestionText(text: "From"),
                                   8.vspace,
-                                  const BookingQuestionTextWidget(text: "To"),
+                                          const CommonQuestionText(text: "To"),
                                 ],
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  const BookingAnswerTextWidget(text: "Name"),
+                                  const CommonAnswerText(text: "Name"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(
-                                      text: "11 feb 2025"),
+                                     const CommonAnswerText(text: "11 feb 2025"),
                                   8.vspace,
                                   BookingAnswerTextWidget(
                                     text: "in transmit",
                                     color: theme.splashColor,
                                   ),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "76kg"),
+                                     const CommonAnswerText(text: "76kg"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "Truck"),
+                                     const CommonAnswerText(text: "Truck"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "Name"),
+                                     const CommonAnswerText(text: "Name"),
                                   8.vspace,
-                                  const BookingAnswerTextWidget(text: "Name"),
+                                     const CommonAnswerText(text: "Name"),
                                 ],
                               ),
                             ],

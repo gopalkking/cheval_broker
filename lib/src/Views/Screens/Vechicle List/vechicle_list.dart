@@ -1,15 +1,14 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
 import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
-import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/Vechicle_list_widgets/add_edit_vechicle_dialog.dart';
-import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
+import 'package:cheval_broker/src/Views/Widgets/textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +28,7 @@ class _VechicleListState extends State<VechicleList> {
   TextEditingController rcNumber = TextEditingController();
   TextEditingController insurance = TextEditingController();
   TextEditingController permit = TextEditingController();
+  TextEditingController search = TextEditingController();
   void showCustomDialog(BuildContext context, String title) {
     showDialog(
       context: context,
@@ -41,20 +41,30 @@ class _VechicleListState extends State<VechicleList> {
   Widget build(BuildContext context) {
        ThemeData theme = Theme.of(context);
     return Scaffold(
-        appBar: AppbarWidget(title:Text("Vehicle List",style: theme.textTheme.headlineSmall,) , 
-       leadindButton: CustomIconButton(icon:  Icons.menu_sharp,onPressed: (){},),
-        actions: const [
-         CustomIconButton(icon:    Icons.search),
-        ],),
         body:  SingleChildScrollView(
           padding:   const EdgeInsets.all(14.0),
           child: Column(
             children: [
+               SizedBox(
+                width: MediaQuery.of(context).size.width / 1,
+                child: Center(
+                    child: Textformfieldwidget(
+                  textEditingController: search,
+                  borderradius: 24,
+                  hinttext: "Search",
+                  hintcolor: Colors.white,
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.white,
+                  ),
+                ))),
+            16.vspace,
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       ButtonWidget(
                         text: '+ Add Vechicle',
+                        textsize: 20,
                         textcolor: Colors.black,
                         width: MediaQuery.of(context).size.width / 1.8,
                         height: 50,

@@ -2,8 +2,10 @@ import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Widgets/Booking_widgets/bidnow_dialog.dart';
 import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,19 @@ class BookingEnquiresView extends StatefulWidget {
 
 class _BookingEnquiresViewState extends State<BookingEnquiresView> {
     TextEditingController bidNow = TextEditingController();
+    TextEditingController searchController = TextEditingController();
+  bool _isSearching = false;
+  String searchTerm = '';
+  
+   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchTerm = searchController.text;
+      });
+    });
+  }
 
   void showBidNowDialog(BuildContext context,) {
     showDialog(
@@ -36,21 +51,19 @@ class _BookingEnquiresViewState extends State<BookingEnquiresView> {
     ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppbarWidget(
-        title: Text(
-          "Booking Enquires",
-          style: theme.textTheme.headlineSmall,
-        ),
-        leadindButton: BackArrowWidget(
-          backgroundColor: Colors.black,
-          iconcolor: Colors.white,
-          onPressed: () {
-            Get.back();
-          },
-          padingValue: 10,
-        ),
-        actions: const [
-          CustomIconButton(icon: Icons.search),
+              titleWidgetbool: true,
+        titlewidget:_isSearching
+            ?CustomSearchTextfield(textEditingController: searchController): Text("Booking Enquiries",  style: theme.textTheme.headlineSmall) , actions: [
+           CustomIconButton(icon:_isSearching ? Icons.close : Icons.search,onPressed: (){
+             setState(() {
+                _isSearching = !_isSearching;
+                if (!_isSearching) {
+                  searchController.clear();
+                }
+              });
+           },),
         ],
+        leadingOnPressed: (){   Get.back();},
       ),
       body: SingleChildScrollView(
         padding:  const EdgeInsets.all(14.0),
@@ -104,74 +117,29 @@ class _BookingEnquiresViewState extends State<BookingEnquiresView> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "Goods Type",
-                                    style: theme.textTheme.bodyLarge,
-                                  ),
+                                  const CommonQuestionText(text: "Goods Type"),
                                   8.vspace,
-                                  Text(
-                                    "Weight",
-                                    style: theme.textTheme.bodyLarge,
-                                  ),
+                                   const CommonQuestionText(text: "Weight"),
                                   8.vspace,
-                                  Text(
-                                    "Vechicle Type",
-                                    style: theme.textTheme.bodyLarge,
-                                  ),
+                                   const CommonQuestionText(text: "Vechicle Type"),
                                   8.vspace,
-                                  Text(
-                                    "From",
-                                    style: theme.textTheme.bodyLarge,
-                                  ),
+                                   const CommonQuestionText(text: "From"),
                                   8.vspace,
-                                  Text(
-                                    "To",
-                                    style: theme.textTheme.bodyLarge,
-                                  ),
+                                   const CommonQuestionText(text: "To"),
                                 ],
                               ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text(
-                                    "Electronics & Appliances",
-                                    style: theme.textTheme.bodyLarge!
-                                        .copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300),
-                                  ),
+                                  const CommonAnswerText(text: "Electronics & Appliances"),
                                   8.vspace,
-                                  Text(
-                                    "76kg",
-                                    style: theme.textTheme.bodyLarge!
-                                        .copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300),
-                                  ),
+                                  const CommonAnswerText(text: "76kg"),
                                   8.vspace,
-                                  Text(
-                                    "Truck",
-                                    style: theme.textTheme.bodyLarge!
-                                        .copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300),
-                                  ),
+                                  const CommonAnswerText(text: "Truck"),
                                   8.vspace,
-                                  Text(
-                                    "Name",
-                                    style: theme.textTheme.bodyLarge!
-                                        .copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300),
-                                  ),
+                                  const CommonAnswerText(text: "Name"),
                                   8.vspace,
-                                  Text(
-                                    "Name",
-                                    style: theme.textTheme.bodyLarge!
-                                        .copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300),
-                                  ),
+                                  const CommonAnswerText(text: "Name"),
                                 ],
                               ),
                             ],

@@ -1,6 +1,6 @@
 import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/home_widgets/home_container_second_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,18 +13,39 @@ class NewEnquiries extends StatefulWidget {
 }
 
 class _NewEnquiriesState extends State<NewEnquiries> {
+  TextEditingController searchController = TextEditingController();
+  bool _isSearching = false;
+  String searchTerm = '';
+  
+   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchTerm = searchController.text;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
      ThemeData theme = Theme.of(context);
     return Scaffold(
-        appBar: AppbarWidget(title:Text(
-          "New Enquiries",
-          style: theme.textTheme.headlineSmall,
-        ), actions: [
-           CustomIconButton(icon: Icons.search,onPressed: (){},),
-        ], leadindButton: BackArrowWidget(backgroundColor: Colors.black,iconcolor: Colors.white,onPressed: (){
-          Get.back();
-        },padingValue: 10,), ),
+        appBar: AppbarWidget(
+          titleWidgetbool: true,
+        titlewidget:_isSearching
+            ?CustomSearchTextfield(textEditingController: searchController): Text("New Enquiries",  style: theme.textTheme.headlineSmall) , actions: [
+           CustomIconButton(icon:_isSearching ? Icons.close : Icons.search,onPressed: (){
+             setState(() {
+                _isSearching = !_isSearching;
+                if (!_isSearching) {
+                  searchController.clear();
+                }
+              });
+           },),
+        ],
+         leadingOnPressed: (){
+             Get.back();
+        }, ),
                 body:  SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(14.0),

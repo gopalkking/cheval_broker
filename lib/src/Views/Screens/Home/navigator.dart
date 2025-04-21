@@ -1,11 +1,16 @@
+import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/drawer_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/home_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Booking/booking_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Driver%20List/driver_list.dart';
 import 'package:cheval_broker/src/Views/Screens/Vechicle%20List/vechicle_list.dart';
 import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
+import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class NavigatorScreen extends StatefulWidget {
@@ -17,6 +22,8 @@ class NavigatorScreen extends StatefulWidget {
 }
 
 class _NavigatorScreenState extends State<NavigatorScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   Widget containershadow(Color color,Widget widget) {
     return Container(
       width: 95,
@@ -35,7 +42,59 @@ class _NavigatorScreenState extends State<NavigatorScreen> {
     return Container(
       color: Appcolors.appColors.shade50,
       child: Scaffold(
+        key: _scaffoldKey,
         backgroundColor: Colors.transparent,
+           appBar: 
+           widget.index == 0 
+           ?AppbarWidget(
+          titleLogo: true,
+          titletext: "",
+          leadingMenuButton: true,
+          leadingOnPressed: (){
+            _scaffoldKey.currentState?.openDrawer();
+          },
+          actions: [
+            CustomIconButton(icon:  Icons.notifications_none_outlined,onPressed: (){
+              Get.toNamed(Appnames.notification);
+            },),
+            CustomIconButton(icon:  Icons.settings_outlined,onPressed: (){
+                Get.toNamed(Appnames.settings);
+            },),
+          ],
+          centerTitile: true): widget.index == 1
+                        ?AppbarWidget(
+      titletext: "Booking",
+      leadingMenuButton: true,
+       leadingOnPressed: (){
+         _scaffoldKey.currentState?.openDrawer();
+       },
+      ):widget.index == 2
+                            ? AppbarWidget(
+                            titletext: "Vehicle List",
+                            leadingMenuButton: true,
+                            leadingOnPressed: (){ _scaffoldKey.currentState?.openDrawer();},):widget.index == 3
+                                ? AppbarWidget(
+           titletext: "Driver List",
+           leadingMenuButton: true,
+           leadingOnPressed: (){
+             _scaffoldKey.currentState?.openDrawer();
+           },
+      ):null,
+      // AppbarWidget(
+      //     title: Image.asset(
+      //       Appimage.logo,
+      //       height: 140,
+      //       width: 140,
+      //     ),
+      //     leadindButton:  CustomIconButton(icon:Icons.menu_sharp,onPressed: (){
+      //        _scaffoldKey.currentState?.openDrawer();
+      //     },),
+      //     actions: [
+      //       CustomIconButton(icon:  Icons.notifications_none_outlined,onPressed: (){},),
+      //       CustomIconButton(icon:  Icons.settings_outlined,onPressed: (){},),
+      //     ],
+      //     centerTitile: true),
+          drawer: const DrawerScreen(),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,

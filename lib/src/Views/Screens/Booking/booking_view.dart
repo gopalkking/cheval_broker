@@ -3,8 +3,8 @@ import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
@@ -18,26 +18,39 @@ class BookingView extends StatefulWidget {
 }
 
 class _BookingViewState extends State<BookingView> {
+  TextEditingController searchController = TextEditingController();
+  bool _isSearching = false;
+  String searchTerm = '';
+  
+   @override
+  void initState() {
+    super.initState();
+    searchController.addListener(() {
+      setState(() {
+        searchTerm = searchController.text;
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
     return Scaffold(
       appBar: AppbarWidget(
-        title: Text(
-          "Booking",
-          style: theme.textTheme.headlineSmall,
-        ),
-        leadindButton: BackArrowWidget(
-          backgroundColor: Colors.black,
-          iconcolor: Colors.white,
-          onPressed: () {
-            Get.back();
-          },
-          padingValue: 10,
-        ),
-        actions: const [
-          CustomIconButton(icon: Icons.search),
+           titleWidgetbool: true,
+        titlewidget:_isSearching
+            ?CustomSearchTextfield(textEditingController: searchController): Text("Booking",  style: theme.textTheme.headlineSmall) , actions: [
+           CustomIconButton(icon:_isSearching ? Icons.close : Icons.search,onPressed: (){
+             setState(() {
+                _isSearching = !_isSearching;
+                if (!_isSearching) {
+                  searchController.clear();
+                }
+              });
+           },),
         ],
+       leadingOnPressed: (){
+           Get.back();
+       },
       ),
       body: SingleChildScrollView(
         child: Padding(

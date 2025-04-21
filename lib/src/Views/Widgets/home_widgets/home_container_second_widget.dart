@@ -1,3 +1,5 @@
+import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
+import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 class HomeContainer2 extends StatelessWidget {
@@ -5,10 +7,12 @@ class HomeContainer2 extends StatelessWidget {
     final String id;
     final String bookingComapny;
     final String location;
+    final Widget? widget;
 
   const HomeContainer2({
     super.key,
     required this.theme, required this.id, required this.bookingComapny, required this.location,
+    this.widget
   });
 
 
@@ -17,53 +21,44 @@ class HomeContainer2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
          margin: const EdgeInsets.all(6),
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
           color: theme.scaffoldBackgroundColor),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          Row(
+               mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+               Text(
                 id,
                 style: theme.textTheme.headlineSmall!
                     .copyWith(fontSize: 22),
               ),
-              8.vspace,
-              Text(
-                "Booking Comapny",
-                style: theme.textTheme.bodyLarge,
-              ),
-              8.vspace,
-              Text(
-                "Location",
-                style: theme.textTheme.bodyLarge,
-              ),
+              widget??const SizedBox.shrink()
             ],
           ),
-          Column(
+          8.vspace,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              36.vspace,
-              Text(
-                bookingComapny,
-                style: theme.textTheme.labelMedium!.copyWith(
-                  color: Colors.white,
-                  fontSize: 16
-                ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CommonQuestionText(text: "Booking Company"),
+                  8.vspace,
+                  const CommonQuestionText(text: "Location"),
+                ],
               ),
-              8.vspace,
-              Text(
-                location,
-                style: theme.textTheme.labelMedium!.copyWith(
-                  color: Colors.white,
-                  fontSize: 16
-                ),
-              ),
+              Column(
+                children: [
+                  CommonAnswerText(text: bookingComapny),
+                  8.vspace,
+                  CommonAnswerText(text: location),
+                ],
+              )
             ],
-          )
+          ),
         ],
       ),
     );

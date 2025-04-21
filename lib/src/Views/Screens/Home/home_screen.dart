@@ -1,11 +1,12 @@
 import 'package:cheval_broker/src/Model/mothly_booking.dart';
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
+import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
-import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
-import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
-import 'package:cheval_broker/src/Views/Widgets/count_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/home_widgets/count_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/home_widgets/home_container_second_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/home_widgets/home_container_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/home_widgets/quick_link_container_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:cheval_broker/src/Views/Widgets/textformfield.dart';
 import 'package:flutter/material.dart';
@@ -21,35 +22,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   TextEditingController search = TextEditingController();
-  
+
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
-      double chartWidth = bookingData.length * 50.0; 
+    double chartWidth = bookingData.length * 50.0;
     return Scaffold(
-      appBar: AppbarWidget(
-          title: Image.asset(
-            Appimage.logo,
-            height: 140,
-            width: 140,
-          ),
-          leadindButton: const CustomIconButton(icon:Icons.menu_sharp),
-          actions: [
-            // IconButton(
-            //   onPressed: () {},
-            //   icon: const CircleAvatar(
-            //     backgroundColor: Colors.black,
-            //     child: Icon(
-            //       Icons.notifications_none_outlined,
-            //       size: 25,
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            // ),
-            CustomIconButton(icon:  Icons.notifications_none_outlined,onPressed: (){},),
-            CustomIconButton(icon:  Icons.settings_outlined,onPressed: (){},),
-          ],
-          centerTitile: true),
+      // appBar: AppbarWidget(
+      //     title: Image.asset(
+      //       Appimage.logo,
+      //       height: 140,
+      //       width: 140,
+      //     ),
+      //     leadindButton:  CustomIconButton(icon:Icons.menu_sharp,onPressed: (){},),
+      //     actions: [
+      //       CustomIconButton(icon:  Icons.notifications_none_outlined,onPressed: (){},),
+      //       CustomIconButton(icon:  Icons.settings_outlined,onPressed: (){},),
+      //     ],
+      //     centerTitile: true),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(14.0),
         child: Column(
@@ -69,6 +59,43 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ))),
             16.vspace,
+            Text(
+              "Quick Links",
+              style: theme.textTheme.headlineSmall!.copyWith(fontSize: 22),
+            ),
+            8.vspace,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  children: [
+                     QuickLinkContainerWidget(
+                        onPressed: () {Get.toNamed(Appnames.dailyAvailability);},
+                        image: Appimage.dailyAvailability,
+                        containername: "Daily \nAvailability"),
+                    8.vspace,
+                     QuickLinkContainerWidget(
+                      onPressed: (){Get.toNamed(Appnames.reportAnalyticsTabs);},
+                        image: Appimage.reportAnalytics,
+                        containername: "Reports \n& Analytics"),
+                  ],
+                ),
+                Column(
+                  children: [
+                    QuickLinkContainerWidget(
+                        onPressed: (){Get.toNamed(Appnames.invoicePayments);},
+                        image: Appimage.invoicePayments,
+                        containername: "Invoice \n& Payments"),
+                    8.vspace,
+                      QuickLinkContainerWidget(
+                        onPressed: (){Get.toNamed(Appnames.recentBookings);},
+                        image: Appimage.recentBookings,
+                        containername: "Recent \nBookings"),
+                  ],
+                )
+              ],
+            ),
+            8.vspace,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -77,41 +104,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     CountWidget(
                         context: context,
                         image: Appimage.totalBookings,
-                        countvalue: "12",
-                        containername: "Total Booking"),
-                    8.vspace,
-                    CountWidget(
-                        context: context,
-                        image: Appimage.completedEnquiries,
                         countvalue: "05",
-                        containername: "Completed Enquiries"),
-                    8.vspace,
-                    CountWidget(
-                        context: context,
-                        image: Appimage.totalDrivers,
-                        countvalue: "05",
-                        containername: "Total Drivers")
+                        containername: "Total \nBookings")
                   ],
                 ),
                 Column(
                   children: [
                     CountWidget(
                         context: context,
-                        image: Appimage.newEnquiries,
+                        image: Appimage.completedEnquiries,
                         countvalue: "45",
-                        containername: "New Enquiries"),
-                    8.vspace,
-                    CountWidget(
-                        context: context,
-                        image: Appimage.activeEnquiries,
-                        countvalue: "05",
-                        containername: "Active \nEnquiries"),
-                    8.vspace,
-                    CountWidget(
-                        context: context,
-                        image: Appimage.totalVechicle,
-                        countvalue: "05",
-                        containername: "Total Vechicle")
+                        containername: "Completed Enquiries")
                   ],
                 )
               ],
@@ -119,53 +122,62 @@ class _HomeScreenState extends State<HomeScreen> {
             16.vspace,
             HomeContainerWidget(
                 context: context,
-                label: "Daily Availability",
+                label: "New Enquiries",
                 onPressed: () {
-                  Get.toNamed(Appnames.dailyAvailability);
+                  Get.toNamed(Appnames.newEnquiries);
                 },
-                widgetcontainer: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 2,
-                    physics: const NeverScrollableScrollPhysics(),
-                    padding: const EdgeInsets.all(0),
-                    itemBuilder: (context, index) {
-                      return Container(
-                        margin: const EdgeInsets.all(6),
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: theme.scaffoldBackgroundColor),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "#24637",
-                                  style: theme.textTheme.headlineSmall!
-                                      .copyWith(fontSize: 22),
-                                ),
-                                8.vspace,
-                                Text(
-                                  "Vechicle Type       Truck",
-                                  style: theme.textTheme.bodyLarge,
-                                ),
-                              ],
-                            ),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
-                      );
-                    }
-                    )
+                widgetcontainer: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text(
+                        "Date:",
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                      Text(
+                        "24.05.2025",
+                        style: theme.textTheme.bodyLarge!.copyWith(color: theme.splashColor),
+                      ),
+                      8.hspace,
+                      Text(
+                        "Time:",
+                        style: theme.textTheme.bodyLarge,
+                      ),
+                      Text(
+                        "12:23pm",
+                        style: theme.textTheme.bodyLarge!.copyWith(color: theme.splashColor),
+                      ),
+                      ],
                     ),
+                    8.vspace,
+                    ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: 2,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: const EdgeInsets.all(0),
+                        itemBuilder: (context, index) {
+                          return HomeContainer2(
+                            theme: theme,
+                            id: "#24637",
+                            bookingComapny: "SwiftLogix",
+                            location: "Coimbatore",
+                            widget:  ButtonWidget(
+                                text: "Bid Now",
+                                width:
+                                    MediaQuery.of(context).size.width / 3.9,
+                                height: 35,
+                                color: Colors.lightGreen.shade200,
+                                onPressed: () {
+                                },
+                                textcolor: Colors.green,
+                                textsize: 16,
+                              ));
+                        }),
+                  ],
+                )),
             16.vspace,
             Container(
-              height: MediaQuery.of(context).size.height/2.2,
+              height: MediaQuery.of(context).size.height / 2.2,
               padding: const EdgeInsets.all(12),
               decoration: const BoxDecoration(color: Colors.black),
               child: Column(
@@ -173,7 +185,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Monthly bookings",style: theme.textTheme.bodyLarge,),
+                      Text(
+                        "Shipment Status",
+                        style: theme.textTheme.bodyLarge,
+                      ),
                       IconButton(
                         onPressed: () {},
                         icon: CircleAvatar(
@@ -193,7 +208,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       width: chartWidth,
                       child: SfCartesianChart(
                         plotAreaBorderWidth: 0,
-                        
                         primaryXAxis: const CategoryAxis(
                           labelStyle: TextStyle(
                             color: Colors.red,
@@ -260,23 +274,48 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             16.vspace,
-            HomeContainerWidget(
+                        HomeContainerWidget(
                 context: context,
-                label: "New Enquiries",
+                label: "Daily Availability",
                 onPressed: () {
-                       Get.toNamed(Appnames.newEnquiries);
+                  Get.toNamed(Appnames.dailyAvailability);
                 },
                 widgetcontainer: ListView.builder(
                     shrinkWrap: true,
                     itemCount: 2,
                     physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     itemBuilder: (context, index) {
-                      return HomeContainer2(
-                        theme: theme,
-                        id: "#24637",
-                        bookingComapny: "SwiftLogix",
-                        location: "Coimbatore",
+                      return Container(
+                        margin: const EdgeInsets.all(6),
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: theme.scaffoldBackgroundColor),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "#24637",
+                                  style: theme.textTheme.headlineSmall!
+                                      .copyWith(fontSize: 22),
+                                ),
+                                8.vspace,
+                                Text(
+                                  "Vechicle Type       Truck",
+                                  style: theme.textTheme.bodyLarge,
+                                ),
+                              ],
+                            ),
+                            const Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.white,
+                            )
+                          ],
+                        ),
                       );
                     })),
             16.vspace,
@@ -284,13 +323,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 context: context,
                 label: "Recent Bookings",
                 onPressed: () {
-                       Get.toNamed(Appnames.recentBookings);
+                  Get.toNamed(Appnames.recentBookings);
                 },
                 widgetcontainer: ListView.builder(
                     shrinkWrap: true,
                     itemCount: 2,
                     physics: const NeverScrollableScrollPhysics(),
-                      padding: const EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     itemBuilder: (context, index) {
                       return HomeContainer2(
                         theme: theme,
@@ -306,7 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<MonthlyBooking> bookingData = [
-     MonthlyBooking(day: 14, completed: 20, pending: 10, cancelled: 20),
+    MonthlyBooking(day: 14, completed: 20, pending: 10, cancelled: 20),
     MonthlyBooking(day: 15, completed: 10, pending: 15, cancelled: 5),
     MonthlyBooking(day: 16, completed: 20, pending: 20, cancelled: 10),
     MonthlyBooking(day: 17, completed: 30, pending: 25, cancelled: 15),
@@ -324,7 +363,5 @@ class _HomeScreenState extends State<HomeScreen> {
     MonthlyBooking(day: 29, completed: 30, pending: 25, cancelled: 15),
     MonthlyBooking(day: 30, completed: 50, pending: 10, cancelled: 20),
     MonthlyBooking(day: 31, completed: 45, pending: 15, cancelled: 5),
-    
   ];
 }
-
