@@ -125,7 +125,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 55,
                 color: theme.splashColor,
                 onPressed: () {
-                  Get.toNamed(Appnames.navigator);
+                  Get.toNamed(Appnames.initalSubscribe);
                 },
               )),
              16.vspace,

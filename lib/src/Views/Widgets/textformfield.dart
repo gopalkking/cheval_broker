@@ -11,12 +11,14 @@ class Textformfieldwidget extends StatelessWidget {
   final double? borderradius;
   final Color? hintcolor;
   final BorderSide? border;
+  final bool? readOnly;
+  final Function()? onTap;
   const Textformfieldwidget({
     super.key,
     required this.textEditingController,
     this.autovalidateMode,
     this.validator,
-    this.hinttext, this.suffixIcon,this.obscureText, this.borderradius, this.hintcolor, this.prefixIcon, this.border,
+    this.hinttext, this.suffixIcon,this.obscureText, this.borderradius, this.hintcolor, this.prefixIcon, this.border, this.readOnly, this.onTap,
   });
 
   @override
@@ -25,6 +27,8 @@ class Textformfieldwidget extends StatelessWidget {
     return TextFormField(
       controller: textEditingController,
       obscureText: obscureText??false ,
+      onTap: onTap,
+      enabled: readOnly,
       style: Theme.of(context).textTheme.titleSmall,
       autovalidateMode: autovalidateMode,
       decoration: InputDecoration(

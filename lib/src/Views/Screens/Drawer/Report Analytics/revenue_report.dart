@@ -5,19 +5,19 @@ import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/filter_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ReportAnalyticsReport extends StatefulWidget {
-  final String tabname;
-  const ReportAnalyticsReport({super.key, required this.tabname});
+class RevenueReport extends StatefulWidget {
+  const RevenueReport({super.key,});
 
   @override
-  State<ReportAnalyticsReport> createState() => _ReportAnalyticsReportState();
+  State<RevenueReport> createState() => _RevenueReportState();
 }
 
-class _ReportAnalyticsReportState extends State<ReportAnalyticsReport> {
+class _RevenueReportState extends State<RevenueReport> {
   @override
   Widget build(BuildContext context) {
        ThemeData theme = Theme.of(context);
@@ -28,20 +28,32 @@ class _ReportAnalyticsReportState extends State<ReportAnalyticsReport> {
         children: [
           Align(
             alignment: Alignment.topRight,
-            child: IconButton(
-              onPressed: () {},
-              icon: Container(
-                height: 46,
-                width: 46,
-                decoration: BoxDecoration(
-                    color: Colors.black, borderRadius: BorderRadius.circular(8)),
-                child: const Icon(
-                  Icons.filter_alt_rounded,
-                  size: 20,
-                  color: Colors.white,
-                ),
-              ),
-            ),
+            child:FilterWidget(onPressed: (){
+               showMenu(
+                              context: context,
+                              position: const RelativeRect.fromLTRB(100, 270, 0,
+                                  0), 
+                                  color: Colors.black,
+                              items: [
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('This Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                 PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last 3 Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option2',
+                                  child: Text('Last 6 Months',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                              ],
+                            );
+            })
           ),
            16.vspace,
                      Container(
@@ -71,8 +83,8 @@ class _ReportAnalyticsReportState extends State<ReportAnalyticsReport> {
                                         Text("Date", style: theme.textTheme.headlineSmall,),
                                         IconButton(
                                         onPressed: () {
-                                          Get.toNamed(Appnames.reportFullView,arguments: {
-                                            'name':widget.tabname
+                                          Get.toNamed(Appnames.revenueReportFullView,arguments: {
+                                            'name':'Revenue Report'
                                           });
                                         },
                                         icon: const Icon(

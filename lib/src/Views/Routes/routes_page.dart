@@ -1,18 +1,22 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
 import 'package:cheval_broker/src/Views/Screens/Booking/booking_enquires_view.dart';
 import 'package:cheval_broker/src/Views/Screens/Booking/booking_full_view.dart';
+import 'package:cheval_broker/src/Views/Screens/Booking/booking_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Booking/booking_view.dart';
 import 'package:cheval_broker/src/Views/Screens/Booking/consignment_screen.dart';
-import 'package:cheval_broker/src/Views/Screens/Drawer/Help%20Support/help_support.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Invoice%20&%20Payments/invoice_payments.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Invoice%20&%20Payments/invoice_screen.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/booking_report_full_view.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/rejection_report_full_view.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/report_analytics_tabs.dart';
-import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/report_full_view.dart';
-import 'package:cheval_broker/src/Views/Screens/Drawer/Settings/add_user.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/revenue_report_full_view.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Settings/role_edit.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Settings/roles_screen.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Settings/settings.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Subscription/current_subscribe.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Subscription/initial_subscribe.dart';
 import 'package:cheval_broker/src/Views/Screens/Drawer/Subscription/subscribe_screen.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/edit_profile.dart';
 import 'package:cheval_broker/src/Views/Screens/Driver%20List/driver_list_full_view.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/daily_availability.dart';
 import 'package:cheval_broker/src/Views/Screens/Home/navigator.dart';
@@ -94,6 +98,11 @@ class AppRoutes {
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
             GetPage(
+            name: Appnames.bookingsScreen,
+            page: () =>  const BookingScreen(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
             name: Appnames.recentBookings,
             page: () =>  const RecentBookings(),
             transitionDuration: const Duration(milliseconds: 250),
@@ -129,13 +138,18 @@ class AppRoutes {
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
             GetPage(
-            name: Appnames.reportFullView,
-            page: () =>  const ReportFullView(),
+            name: Appnames.revenueReportFullView,
+            page: () =>  const RevenueReportFullView(),
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
             GetPage(
-            name: Appnames.helpSupport,
-            page: () =>  const HelpSupport(),
+            name: Appnames.bookingReportFullView,
+            page: () =>  const BookingReportFullView(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.rejectionReportFullView,
+            page: () =>  const RejectionReportFullView(),
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
             GetPage(
@@ -149,8 +163,8 @@ class AppRoutes {
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
             GetPage(
-            name: Appnames.addUser,
-            page: () =>  const AddUser(),
+            name: Appnames.roleEdit,
+            page: () =>  const RoleEdit(),
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
             GetPage(
@@ -181,6 +195,16 @@ class AppRoutes {
             GetPage(
             name: Appnames.consignmentScreen,
             page: () =>  const ConsignmentNote(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.editProfile,
+            page: () =>  const EditProfile(),
+            transitionDuration: const Duration(milliseconds: 250),
+            transition: Transition.rightToLeftWithFade),
+            GetPage(
+            name: Appnames.initalSubscribe,
+            page: () =>  const InitialSubscribe(),
             transitionDuration: const Duration(milliseconds: 250),
             transition: Transition.rightToLeftWithFade),
       ];

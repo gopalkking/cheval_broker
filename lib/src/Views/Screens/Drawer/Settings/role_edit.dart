@@ -1,3 +1,4 @@
+import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
 import 'package:cheval_broker/src/Views/Widgets/Settings_widgets/setting_checkbox_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/Settings_widgets/setting_row_name_textfield_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
@@ -9,14 +10,14 @@ import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AddUser extends StatefulWidget {
-  const AddUser({super.key});
+class RoleEdit extends StatefulWidget {
+  const RoleEdit({super.key});
 
   @override
-  State<AddUser> createState() => _AddUserState();
+  State<RoleEdit> createState() => _RoleEditState();
 }
 
-class _AddUserState extends State<AddUser> {
+class _RoleEditState extends State<RoleEdit> {
   TextEditingController name = TextEditingController();
   bool isCheckedDashboard = true;
   bool isCheckedBookingEnquiries = false;
@@ -32,7 +33,7 @@ class _AddUserState extends State<AddUser> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppbarWidget(
-        titletext: "Add User",
+        titletext: "Role Edit",
         leadingOnPressed: () {
           Get.back();
         },
@@ -45,14 +46,13 @@ class _AddUserState extends State<AddUser> {
           padding: const EdgeInsets.all(14.0),
           child: Column(
             children: [
-              SettingRowNameTextfieldWidget(textEditingController: name, text: "Name",hinttext: "Name",),
-              8.vspace,
-              SettingRowNameTextfieldWidget(textEditingController: name, text: "Designation",hinttext: "Super Admin",),
-              8.vspace,
-              SettingRowNameTextfieldWidget(textEditingController: name, text: "Phone Number", hinttext: "Super Admin"),
-              8.vspace,
-              SettingRowNameTextfieldWidget(textEditingController: name, text: "Email", hinttext: "Super Admin"),
-              16.vspace,
+              // SettingRowNameTextfieldWidget(textEditingController: name, text: "Name",hinttext: "Name",),
+              // 8.vspace,
+              // SettingRowNameTextfieldWidget(textEditingController: name, text: "Designation",hinttext: "Super Admin",),
+              // 8.vspace,
+              // SettingRowNameTextfieldWidget(textEditingController: name, text: "Phone Number", hinttext: "Super Admin"),
+              // 8.vspace,
+              // SettingRowNameTextfieldWidget(textEditingController: name, text: "Email", hinttext: "Super Admin"),
               Container(
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(

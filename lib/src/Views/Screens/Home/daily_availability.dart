@@ -25,6 +25,10 @@ class _DailyAvailabilityState extends State<DailyAvailability> {
   TextEditingController vechicelType = TextEditingController();
   TextEditingController currentPincode = TextEditingController();
   TextEditingController preferredDistrict = TextEditingController();
+  TextEditingController preferredDistrict2 = TextEditingController();
+  TextEditingController preferredDistrict3 = TextEditingController();
+  TextEditingController preferredDistrict4 = TextEditingController();
+  TextEditingController preferredDistrict5= TextEditingController();
   TextEditingController preferredState = TextEditingController();
   TextEditingController searchController = TextEditingController();
   bool _isSearching = false;
@@ -41,7 +45,10 @@ class _DailyAvailabilityState extends State<DailyAvailability> {
                     currentPincode: currentPincode,
                     preferredState: preferredState,
                     preferredDistrict: preferredDistrict,
-                    addDistrictonPressed: () {},
+                    preferredDistrict2: preferredDistrict2,
+                    preferredDistrict3: preferredDistrict3,
+                    preferredDistrict4: preferredDistrict4,
+                    preferredDistrict5: preferredDistrict5,
                     saveonPressed: () {},
                   ),);
       },

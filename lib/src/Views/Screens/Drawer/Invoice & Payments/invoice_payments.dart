@@ -36,7 +36,32 @@ class _InvoicePaymentsState extends State<InvoicePayments> {
             16.vspace,
             Align(
               alignment: Alignment.topRight,
-              child: FilterWidget(onPressed: (){})),
+              child: FilterWidget(onPressed: (){
+                 showMenu(
+                              context: context,
+                              position: const RelativeRect.fromLTRB(100, 200, 0,
+                                  0), 
+                                  color: Colors.black,
+                              items: [
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('This Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                 PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last 3 Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option2',
+                                  child: Text('Last 6 Months',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                              ],
+                            );
+              })),
             16.vspace,
             Container(
               padding: const EdgeInsets.all(16),

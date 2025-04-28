@@ -1,4 +1,4 @@
-import 'package:cheval_broker/src/Views/Widgets/Subsccription_widgets/add_money_dialog.dart';
+import 'package:cheval_broker/src/Views/Widgets/Subscription_widgets/add_money_dialog.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';

@@ -1,14 +1,17 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
 import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
+import 'package:cheval_broker/src/Views/Widgets/Settings_widgets/settings_add_user_dialog.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_dropdown.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/filter_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,9 +24,38 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  TextEditingController name = TextEditingController();
+  TextEditingController phone = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController searchController = TextEditingController();
+  final role = ['Admin', 'Super Admin'];
+  String? selectedRole;
   bool _isSearching = false;
   String searchTerm = '';
+
+   void showCustomDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return PopupWidget(widget:  SizedBox(
+          height: MediaQuery.of(context).size.height/1.4,
+          child: SettingsAddUserDialog(dropdownWidget: CustomDropdown(
+                              labeltext: 'Select Role',
+                              borderColor: Colors.grey,
+                              labelColor: Colors.white,
+                              dropdownColor: Colors.black,
+                              value: selectedRole,
+                              borderRadius: 12.0,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  selectedRole = newValue;
+                                });
+                              },
+                              items: role), name: name, phone: phone, email: email,nextonPressed: (){},),
+        ));
+      },
+    );
+  }
   
    @override
   void initState() {
@@ -71,7 +103,8 @@ class _SettingsState extends State<Settings> {
                             textsize: 18,
                             color: theme.splashColor,
                             onPressed: () {
-                            Get.toNamed(Appnames.addUser);
+                             showCustomDialog(context);
+                           // Get.toNamed(Appnames.addUser);
                             },
                           ),
                           24.hspace,
@@ -87,7 +120,32 @@ class _SettingsState extends State<Settings> {
                             },
                           ),
                              SizedBox(width: MediaQuery.of(context).size.width/6.3,),
-                            FilterWidget(onPressed: (){})
+                            FilterWidget(onPressed: (){
+                               showMenu(
+                              context: context,
+                              position: const RelativeRect.fromLTRB(100, 180, 0,
+                                  0), 
+                                  color: Colors.black,
+                              items: [
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('This Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                 PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last 3 Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option2',
+                                  child: Text('Last 6 Months',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                              ],
+                            );
+                            })
                         ],
                       ),
                       24.vspace,
@@ -119,9 +177,9 @@ class _SettingsState extends State<Settings> {
                                     style: theme.textTheme.headlineSmall!
                                         .copyWith(fontSize: 22),
                                   ),
-                                        IconButton(onPressed: (){
-                                         //  Get.toNamed(Appnames.bookingFullView);
-                                        }, icon: const Icon(Icons.arrow_forward_ios,color: Colors.white,)),
+                                        // IconButton(onPressed: (){
+                                        //  //  Get.toNamed(Appnames.bookingFullView);
+                                        // }, icon: const Icon(Icons.arrow_forward_ios,color: Colors.white,)),
                                 ],
                               ),
                               8.vspace,

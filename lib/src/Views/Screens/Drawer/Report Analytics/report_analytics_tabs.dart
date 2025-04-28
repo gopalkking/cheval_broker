@@ -1,4 +1,6 @@
-import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/report_analytics_report.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/booking_report.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/rejection_report.dart';
+import 'package:cheval_broker/src/Views/Screens/Drawer/Report%20Analytics/revenue_report.dart';
 import 'package:cheval_broker/src/Views/Widgets/appbar_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_icon_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_search_textfield.dart';
@@ -41,7 +43,7 @@ class _ReportAnalyticsTabsState extends State<ReportAnalyticsTabs>
     super.dispose();
   }
 
-  List<String> tabs = ['Revenue Report', 'Booking Report'];
+  List<String> tabs = ['Revenue Report', 'Booking Report','Rejection Report'];
   @override
   Widget build(BuildContext context) {
     ThemeData theme = Theme.of(context);
@@ -82,6 +84,7 @@ class _ReportAnalyticsTabsState extends State<ReportAnalyticsTabs>
                                     ? theme.splashColor
                                     : Colors.white,
                                 fontSize: 20),
+                                textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -90,8 +93,9 @@ class _ReportAnalyticsTabsState extends State<ReportAnalyticsTabs>
                     child: TabBarView(
                       controller: _tabController,
                       children: const [
-                        ReportAnalyticsReport(tabname: "Revenue Report",),
-                        ReportAnalyticsReport(tabname: "Booking Report",)
+                        RevenueReport(),
+                        BookingReport(),
+                        RejectionReport()
                       ],
                     ),
                   ),

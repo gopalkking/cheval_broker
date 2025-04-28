@@ -1,13 +1,13 @@
-class MonthlyBooking {
-  final int day;
-  final double completed;
-  final double pending;
-  final double cancelled;
+import 'package:flutter/material.dart';
 
-  MonthlyBooking({
-    required this.day,
-    required this.completed,
-    required this.pending,
-    required this.cancelled,
+class ShipmentStatus {
+  final String name;
+  final double value;
+  final Color color;
+
+  ShipmentStatus({
+    required this.name,
+    required this.value,
+    required this.color
   });
 }

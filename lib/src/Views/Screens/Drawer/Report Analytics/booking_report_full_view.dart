@@ -9,15 +9,15 @@ import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ReportFullView extends StatefulWidget {
+class BookingReportFullView extends StatefulWidget {
   final String? title;
-  const ReportFullView({super.key, this.title});
+  const BookingReportFullView({super.key, this.title});
 
   @override
-  State<ReportFullView> createState() => _ReportFullViewState();
+  State<BookingReportFullView> createState() => _BookingReportFullViewState();
 }
 
-class _ReportFullViewState extends State<ReportFullView> {
+class _BookingReportFullViewState extends State<BookingReportFullView> {
 
   @override
   Widget build(BuildContext context) {
@@ -47,25 +47,25 @@ class _ReportFullViewState extends State<ReportFullView> {
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                                 const CommonQuestionText(text: "No of Enquiry"),
-                                                8.vspace,
-                                                 const CommonQuestionText(text: "Bids Count"),
-                                                8.vspace,
-                                                 const CommonQuestionText(text: "Bids Accepted"),
-                                                8.vspace,
-                                                 const CommonQuestionText(text: "Bid Amount"),
+                                               const CommonQuestionText(text: "Bid Accepted"),
+                                            8.vspace,
+                                             const CommonQuestionText(text: "Bid Amount"),
+                                            8.vspace,
+                                             const CommonQuestionText(text: "Payment Collected"),
+                                            8.vspace,
+                                             const CommonQuestionText(text: "Payment Balance"),
                                     ],
                                   ),
                                   Column(
                                     crossAxisAlignment: CrossAxisAlignment.end,
                                     children: [
-                                                 const CommonAnswerText(text: "4"),
-                                              8.vspace,
-                                                 const CommonAnswerText(text: "Count"),
-                                              8.vspace,
-                                                 const CommonAnswerText(text: "₹56778"),
-                                              8.vspace,
-                                                 const CommonAnswerText(text: "₹2356"),
+                                            const CommonAnswerText(text: "₹56"),
+                                          8.vspace,
+                                             const CommonAnswerText(text: "₹778"),
+                                          8.vspace,
+                                             const CommonAnswerText(text: "₹56778"),
+                                          8.vspace,
+                                             const CommonAnswerText(text: "₹2356"),
                                     ],
                                   ),
                                 ],

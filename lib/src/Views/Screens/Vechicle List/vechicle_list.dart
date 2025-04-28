@@ -6,11 +6,13 @@ import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/filter_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:cheval_broker/src/Views/Widgets/textformfield.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class VechicleList extends StatefulWidget {
   const VechicleList({super.key});
@@ -20,20 +22,53 @@ class VechicleList extends StatefulWidget {
 }
 
 class _VechicleListState extends State<VechicleList> {
+  TextEditingController vechicleNumber = TextEditingController();
   TextEditingController vechicleModel = TextEditingController();
   TextEditingController vechicleType = TextEditingController();
-  TextEditingController vechicleOwner = TextEditingController();
-  TextEditingController vechicleNumber = TextEditingController();
-  TextEditingController ownerPhone = TextEditingController();
   TextEditingController rcNumber = TextEditingController();
-  TextEditingController insurance = TextEditingController();
-  TextEditingController permit = TextEditingController();
+  TextEditingController rcExpires = TextEditingController();
+  TextEditingController permitNumber = TextEditingController();
+  TextEditingController permitExpires = TextEditingController();
+  TextEditingController pucStatus = TextEditingController();
+  TextEditingController insuranceNumber = TextEditingController();
+  TextEditingController insuranceExpires = TextEditingController();
+  TextEditingController ownerName = TextEditingController();
+  TextEditingController ownerPhone = TextEditingController();
+  TextEditingController driverName = TextEditingController();
+  TextEditingController driverPhone = TextEditingController();
   TextEditingController search = TextEditingController();
+  DateTime selectedDate = DateTime.now();
+  Future<void> selectDate(BuildContext context,TextEditingController controller) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        initialDatePickerMode: DatePickerMode.day,
+        firstDate: DateTime(1960),
+        lastDate: DateTime(2101),
+        builder: (context, child) {
+        return Theme(
+          data: ThemeData.light(),
+          child: child!,
+        );
+      },
+        );
+        
+    if (picked != null) {
+      setState(() {
+        selectedDate = picked;
+        controller.text = DateFormat('dd/MM/yyyy').format(selectedDate);
+      });
+    }
+  }
   void showCustomDialog(BuildContext context, String title) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return PopupWidget(widget:  AddEditVechicleDialog(title: title, vechicleType: vechicleType, vechicleModel: vechicleModel, vechicleOwner: vechicleOwner, ownerPhone: ownerPhone, vechicleNumber: vechicleNumber, rcNumber: rcNumber, insurance: insurance, permit: permit,saveonPressed: (){},),);
+        return StatefulBuilder(
+          builder: (context,setState) {
+            return PopupWidget(widget:  AddEditVechicleDialog(title: title, vechicleNumber: vechicleNumber, vechicleModel: vechicleModel, vechicleType: vechicleType, rcNumber: rcNumber, rcExpires: rcExpires, permitNumber: permitNumber, permitExpires: permitExpires, pucStatus: pucStatus, insuranceNumber: insuranceNumber, insuranceExpires: insuranceExpires, ownerName: ownerName, ownerPhone: ownerPhone, driverName: driverName, driverPhone: driverPhone,saveonPressed: (){},rcExpiresOnTap: () => selectDate(context,rcExpires),permitExpiresOnTap: ()=>selectDate(context, permitExpires),insuranceExpiresOnTap: ()=>selectDate(context, insuranceExpires),));
+          }
+        );
       },
     );
   }
@@ -73,19 +108,32 @@ class _VechicleListState extends State<VechicleList> {
                           showCustomDialog(context, "Add/Vechicle");
                         },
                       ),
-                        IconButton(
-                        onPressed: () {},
-                        icon: Container(
-                          height: 46,
-                          width: 46,
-                          decoration:  BoxDecoration(color: Colors.black,borderRadius: BorderRadius.circular(8)),
-                          child: const Icon(
-                            Icons.filter_alt_rounded,
-                            size: 20,
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
+                     FilterWidget(onPressed: (){
+                       showMenu(
+                              context: context,
+                              position: const RelativeRect.fromLTRB(100, 250, 0,
+                                  0), 
+                                  color: Colors.black,
+                              items: [
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('This Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                 PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last 3 Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option2',
+                                  child: Text('Last 6 Months',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                              ],
+                            );
+                     })
                     ],
                   ),
                   16.vspace,
@@ -196,8 +244,6 @@ class _VechicleListState extends State<VechicleList> {
                           );
                         }),
                    ),
-
-
             ],
           ),
         ),

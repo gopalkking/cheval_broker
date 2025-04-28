@@ -11,6 +11,7 @@ class MyDialogWidget extends StatelessWidget {
   final String canceltext;
   final Function()? onPressed;
   final Function()? cancelButton;
+  final Color? buttoncolor;
   const MyDialogWidget(
       {super.key,
       required this.imagetext,
@@ -19,7 +20,7 @@ class MyDialogWidget extends StatelessWidget {
       required this.buttontext,
       required this.canceltext,
       this.onPressed,
-      this.cancelButton});
+      this.cancelButton, this.buttoncolor});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,7 @@ class MyDialogWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                 CustomOutlineButton(text: canceltext, width: MediaQuery.of(context).size.width/3.7, height: 45, color: Colors.white,onPressed: cancelButton,),
-                  ButtonWidget(text: buttontext, width: MediaQuery.of(context).size.width/3.7, height: 45, color: Colors.red,textcolor: Colors.white,onPressed:onPressed,textsize: 18,)
+                  ButtonWidget(text: buttontext, width: MediaQuery.of(context).size.width/3.7, height: 45, color: buttoncolor??Colors.red,textcolor: Colors.white,onPressed:onPressed,textsize: 18,)
               ],)
             ],
           ),

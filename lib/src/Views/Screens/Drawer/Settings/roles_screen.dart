@@ -1,3 +1,4 @@
+import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
 import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/Custom_icon_button.dart';
@@ -36,6 +37,22 @@ class _RolesScreenState extends State<RolesScreen> {
           padding: const EdgeInsets.all(14.0),
           child: Column(
             children: [
+              
+              Align(
+                alignment: Alignment.topRight,
+                child: ButtonWidget(
+                              text: '+ Add Role',
+                              textcolor: Colors.black,
+                              width: MediaQuery.of(context).size.width / 3,
+                              height: 50,
+                              textsize: 18,
+                              color: Theme.of(context).splashColor,
+                              onPressed: () {
+                               Get.toNamed(Appnames.roleEdit);
+                              },
+                            ),
+              ),
+                          16.vspace,
                         Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
@@ -101,7 +118,7 @@ class _RolesScreenState extends State<RolesScreen> {
                                 height: 48,
                                 color: const Color(Appcolors.lightblue),
                                 onPressed: () {
-                                  // showCustomDialog(context, "Edit/Driver");
+                                 Get.toNamed(Appnames.roleEdit);
                                 },
                               ),
                               26.hspace,

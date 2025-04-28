@@ -6,6 +6,7 @@ import 'package:cheval_broker/src/Views/Widgets/common_answer_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/common_question_text.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
 import 'package:cheval_broker/src/Views/Widgets/dialog_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/filter_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/popup_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/sizedbox.dart';
 import 'package:cheval_broker/src/Views/Widgets/textformfield.dart';
@@ -75,21 +76,32 @@ class _DriverListState extends State<DriverList> {
                     showCustomDialog(context, "Add/Driver");
                   },
                 ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Container(
-                    height: 46,
-                    width: 46,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        borderRadius: BorderRadius.circular(8)),
-                    child: const Icon(
-                      Icons.filter_alt_rounded,
-                      size: 20,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
+                FilterWidget(onPressed: (){
+                   showMenu(
+                              context: context,
+                              position: const RelativeRect.fromLTRB(100, 250, 0,
+                                  0), 
+                                  color: Colors.black,
+                              items: [
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('This Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                 PopupMenuItem(
+                                  value: 'option1',
+                                  child: Text('Last 3 Month',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                                PopupMenuItem(
+                                  value: 'option2',
+                                  child: Text('Last 6 Months',style: theme.textTheme.bodyLarge!.copyWith(fontSize: 20),),
+                                ),
+                              ],
+                            );
+                })
               ],
             ),
             16.vspace,

@@ -21,4 +21,5 @@ class Appimage {
   //static const String totalVechicle = 'assets/images/total_vechicle.png';
   static const String delete = 'assets/images/delete.png';
   static const String alert = 'assets/images/Alert.png';
+  static const String logout = 'assets/images/logout.png';
 }
