@@ -1,48 +1,39 @@
+import 'package:cheval_broker/src/Views/Utilies/images.dart';
+import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
+import 'package:cheval_broker/src/Views/Widgets/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 class AppbarWidget extends StatelessWidget  implements PreferredSizeWidget {
   final bool? centerTitile;
-  final Widget title;
-  final Function()? menuOnPressed;
-  final List<Widget> actions;
-  const AppbarWidget({super.key, required this.title, this.menuOnPressed, required this.actions, this.centerTitile});
+  final Function()? leadingOnPressed;
+  final bool?titleLogo;
+  final bool? leadingMenuButton;
+  final String? titletext;
+  final Widget? titlewidget;
+  final bool? titleWidgetbool;
+  final List<Widget>? actions;
+  const AppbarWidget({super.key, this.leadingOnPressed,  this.actions, this.centerTitile, this.leadingMenuButton, this.titleLogo, this.titletext,this.titlewidget,this.titleWidgetbool});
 
   @override
   Widget build(BuildContext context) {
+      ThemeData theme = Theme.of(context);
     return  AppBar(
         centerTitle: centerTitile,
-        title: title,
-        //title: Image.asset(Appimage.logo,height: 140,width: 140,),
-         leading: IconButton(
-            onPressed: menuOnPressed,
-            icon: const CircleAvatar(
-              backgroundColor: Colors.black,
-              child: Icon(
-                Icons.menu_sharp,
-                size: 25,
-                color: Colors.white,
-              ),
-            ),
-            ),
+        title: titleLogo==true?Image.asset(
+            Appimage.logo,
+            height: 140,
+            width: 140,
+          ): titleWidgetbool!=null?titlewidget:Text(
+          titletext!,
+          style: theme.textTheme.headlineSmall,
+        )  ,
+         leading: leadingMenuButton == true?CustomIconButton(icon:Icons.menu_sharp,onPressed:leadingOnPressed,):BackArrowWidget(
+          backgroundColor: Colors.black,
+          iconcolor: Colors.white,
+          onPressed: leadingOnPressed,
+          padingValue: 10,
+        ),
             actions:actions,
-            //  [
-            //   IconButton(onPressed: (){}, icon:  const CircleAvatar(
-            //   backgroundColor: Colors.black,
-            //   child: Icon(
-            //     Icons.notifications_none_outlined,
-            //     size: 25,
-            //     color: Colors.white,
-            //   ),
-            // ),),
-            //  IconButton(onPressed: (){}, icon:  const CircleAvatar(
-            //   backgroundColor: Colors.black,
-            //   child: Icon(
-            //     Icons.settings_outlined,
-            //     size: 25,
-            //     color: Colors.white,
-            //   ),
-            // ),)
-            // ],
              bottom: PreferredSize(
           preferredSize: const Size.fromHeight(0.6),
           child: Container(

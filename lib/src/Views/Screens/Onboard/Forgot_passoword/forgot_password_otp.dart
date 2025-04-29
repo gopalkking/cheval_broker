@@ -1,4 +1,5 @@
 import 'package:cheval_broker/src/Views/Routes/routes_name.dart';
+import 'package:cheval_broker/src/Views/Utilies/colors.dart';
 import 'package:cheval_broker/src/Views/Utilies/images.dart';
 import 'package:cheval_broker/src/Views/Widgets/back_arrow_widget.dart';
 import 'package:cheval_broker/src/Views/Widgets/custom_button.dart';
@@ -44,6 +45,7 @@ class _ForgotPasswordOtpState extends State<ForgotPasswordOtp> {
                 onPressed: () {
                   Get.back();
                 },
+                backgroundColor: Appcolors.appColors.shade100,
               ),
               8.vspace,
               Center(child: Image.asset(Appimage.forgotPassword)),
